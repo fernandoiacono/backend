@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/persona")
 public class PersonaController {
@@ -16,14 +18,26 @@ public class PersonaController {
     private PersonaService personaService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<PersonaDTO> getPostById(@PathVariable(name = "id") Long id) {
-        return ResponseEntity.ok(personaService.getPersonById(id));
+    public ResponseEntity<PersonaDTO> getPersonaById(@PathVariable(name = "id") Long id) {
+        return new ResponseEntity<>(personaService.getPersonaById(id), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping
+    //@PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<PersonaDTO> createPersona(@Valid @RequestBody PersonaDTO personaDTO) {
+        return new ResponseEntity<>(personaService.createPersona(personaDTO), HttpStatus.OK);
+    }
+
+    //@PreAuthorize("hasRole('ADMIN')")
+    @PutMapping
+    public ResponseEntity<PersonaDTO> updatePersona(@PathVariable(name = "personaId") Long personaId, @Valid @RequestBody PersonaDTO personaDTO) {
+        return new ResponseEntity<>(personaService.updatePersona(personaId, personaDTO), HttpStatus.OK);
+    }
+
+    //@PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePost(@PathVariable(name = "id") Long id) {
-        personaService.deletePerson(id);
+    public ResponseEntity<String> deletePersona(@PathVariable(name = "id") Long id) {
+        personaService.deletePersona(id);
         return new ResponseEntity<>("La persona se eliminó correctamente", HttpStatus.OK);
     }
 }

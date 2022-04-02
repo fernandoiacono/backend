@@ -20,13 +20,42 @@ public class PersonaService implements IPersonaService{
     private IPersonaRepository personaRepository;
 
     @Override
-    public PersonaDTO getPersonById(Long id) {
+    public PersonaDTO getPersonaById(Long id) {
         Persona persona = personaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Persona", "id", id));
         return mapToDTO(persona);
     }
 
     @Override
-    public void deletePerson(Long id) {
+    public PersonaDTO createPersona(PersonaDTO personaDTO) {
+        Persona persona = mapToEntity(personaDTO);
+
+        Persona newPersona = personaRepository.save(persona);
+
+        return mapToDTO(newPersona);
+    }
+
+
+    @Override
+    public PersonaDTO updatePersona(Long id, PersonaDTO personaDTO) {
+        Persona persona = personaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Persona", "id", id));
+
+        persona.setNombre(personaDTO.getNombre());
+        persona.setApellido(personaDTO.getApellido());
+        persona.setCorreo(personaDTO.getCorreo());
+        persona.setDomicilio(personaDTO.getDomicilio());
+        persona.setTelefono(personaDTO.getTelefono());
+        persona.setFecha_nac(personaDTO.getFecha_nac());
+        persona.setUrl_foto(personaDTO.getUrl_foto());
+        persona.setEducacion(personaDTO.getEducacion());
+        persona.setExperiencia_laboral(personaDTO.getExperiencia_laboral());
+        persona.setHabilidades(personaDTO.getHabilidades());
+
+        Persona personaToUpdate = personaRepository.save(persona);
+        return mapToDTO(personaToUpdate);
+    }
+
+    @Override
+    public void deletePersona(Long id) {
         Persona persona = personaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Persona", "id", id));
         personaRepository.delete(persona);
     }

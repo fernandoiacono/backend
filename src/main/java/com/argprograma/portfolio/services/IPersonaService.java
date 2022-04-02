@@ -4,8 +4,12 @@ import com.argprograma.portfolio.dto.PersonaDTO;
 
 public interface IPersonaService {
 
-    public PersonaDTO getPersonById(Long id);
+    PersonaDTO getPersonaById(Long id);
 
-    public void deletePerson(Long id);
+    PersonaDTO createPersona(PersonaDTO personaDTO);
+
+    PersonaDTO updatePersona(Long id, PersonaDTO personaDTO);
+
+    void deletePersona(Long id);
 
 }
