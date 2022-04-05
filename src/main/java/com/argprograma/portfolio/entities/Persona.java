@@ -7,14 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "persona")
+@Table(name = "personas")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,19 +35,26 @@ public class Persona {
     @Column(name="fecha_nac")
     private Date fecha_nac;
 
-    //@Size(max = 20, min = 10, message = "El telefono debe tener al menos 10 caracteres")
     @Column(name="telefono")
     private String telefono;
 
-    //@Email
     @Column(name="correo", unique = true)
     private String correo;
+
+    @Column(name="descripcion")
+    private String descripcion;
 
     @Column(name="sobre_mi")
     private String sobre_mi;
 
     @Column(name="url_foto")
     private String url_foto;
+
+    @Column(name="facebook_link")
+    private String facebook_link;
+
+    @Column(name="github_link")
+    private String github_link;
 
     @JsonBackReference
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -62,4 +67,8 @@ public class Persona {
     @JsonBackReference
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Habilidad> habilidades = new HashSet<>();
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Proyecto> proyectos = new HashSet<>();
 }

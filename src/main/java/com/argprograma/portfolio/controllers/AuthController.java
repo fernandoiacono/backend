@@ -16,14 +16,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/auth")
 public class AuthController {
 
@@ -67,7 +65,7 @@ public class AuthController {
         newUser.setEmail(registerDTO.getEmail());
         newUser.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
 
-        Role newUserRoles = roleRepository.findByName("ROLE_ADMIN").get();
+        Role newUserRoles = roleRepository.findByName("ROLE_USER").get();
 
         newUser.setRoles(Collections.singleton(newUserRoles));
 

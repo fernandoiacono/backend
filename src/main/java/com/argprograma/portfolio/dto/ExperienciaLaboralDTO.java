@@ -1,6 +1,6 @@
 package com.argprograma.portfolio.dto;
 
-import com.argprograma.portfolio.entities.TipoTrabajo;
+import com.argprograma.portfolio.entities.TipoEmpleo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +31,6 @@ public class ExperienciaLaboralDTO {
     private Integer orden;
 
     @NotNull
-    private TipoTrabajo tipo_empleo;
+    private TipoEmpleo tipo_empleo;
 
 }

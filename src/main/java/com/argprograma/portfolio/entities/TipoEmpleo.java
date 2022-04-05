@@ -8,11 +8,11 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tipo_empleo")
+@Table(name = "tipos_de_empleo")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-public class TipoTrabajo {
+public class TipoEmpleo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

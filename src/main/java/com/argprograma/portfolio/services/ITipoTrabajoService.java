@@ -1,18 +1,18 @@
 package com.argprograma.portfolio.services;
 
-import com.argprograma.portfolio.dto.TipoTrabajoDTO;
+import com.argprograma.portfolio.dto.TipoEmpleoDTO;
 
 import java.util.List;
 
 public interface ITipoTrabajoService {
 
-    public List<TipoTrabajoDTO> getAllTipoDeTrabajo();
+    public List<TipoEmpleoDTO> getAllTipoDeTrabajo();
 
-    public TipoTrabajoDTO getTipoDeTrabajoById(Long id);
+    public TipoEmpleoDTO getTipoDeTrabajoById(Long id);
 
-    public TipoTrabajoDTO createTipoDeTrabajo(TipoTrabajoDTO tipoTrabajoDTO);
+    public TipoEmpleoDTO createTipoDeTrabajo(TipoEmpleoDTO tipoEmpleoDTO);
 
-    public TipoTrabajoDTO updateTipoDeTrabajo(Long tipoDeTrabajoId, TipoTrabajoDTO tipoTrabajoDTO);
+    public TipoEmpleoDTO updateTipoDeTrabajo(Long tipoDeTrabajoId, TipoEmpleoDTO tipoEmpleoDTO);
 
     public void deleteTipoDeTrabajo(Long id);
 

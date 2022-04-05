@@ -3,6 +3,7 @@ package com.argprograma.portfolio.dto;
 import com.argprograma.portfolio.entities.Educacion;
 import com.argprograma.portfolio.entities.ExperienciaLaboral;
 import com.argprograma.portfolio.entities.Habilidad;
+import com.argprograma.portfolio.entities.Proyecto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -47,11 +48,19 @@ public class PersonaDTO {
 
     @NotEmpty
     @NotBlank
+    private String descripcion;
+
+    @NotEmpty
+    @NotBlank
     private String sobre_mi;
 
     @NotEmpty
     @NotBlank
     private String url_foto;
+
+    private String facebook_link;
+
+    private String github_link;
 
     @NotEmpty
     @NotBlank
@@ -64,4 +73,8 @@ public class PersonaDTO {
     @NotEmpty
     @NotBlank
     private Set<Habilidad> habilidades = new HashSet<>();
+
+    @NotEmpty
+    @NotBlank
+    private Set<Proyecto> proyectos = new HashSet<>();
 }

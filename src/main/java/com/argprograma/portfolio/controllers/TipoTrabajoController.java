@@ -1,7 +1,7 @@
 package com.argprograma.portfolio.controllers;
 
 import com.argprograma.portfolio.dto.GenericResponseDTO;
-import com.argprograma.portfolio.dto.TipoTrabajoDTO;
+import com.argprograma.portfolio.dto.TipoEmpleoDTO;
 import com.argprograma.portfolio.services.TipoDeTrabajoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,25 +19,25 @@ public class TipoTrabajoController {
     private TipoDeTrabajoService tipoDeTrabajoService;
 
     @GetMapping
-    public ResponseEntity<List<TipoTrabajoDTO>> getAllTipoDeTrabajo() {
+    public ResponseEntity<List<TipoEmpleoDTO>> getAllTipoDeTrabajo() {
         return new ResponseEntity<>(tipoDeTrabajoService.getAllTipoDeTrabajo(), HttpStatus.OK);
     }
 
     @GetMapping("/{tipoDeTrabajoId}")
-    public ResponseEntity<TipoTrabajoDTO> getTipoDeTrabajoById(@PathVariable(name="tipoDeTrabajoId") Long tipoDeTrabajoId){
+    public ResponseEntity<TipoEmpleoDTO> getTipoDeTrabajoById(@PathVariable(name="tipoDeTrabajoId") Long tipoDeTrabajoId){
         return new ResponseEntity<>(tipoDeTrabajoService.getTipoDeTrabajoById(tipoDeTrabajoId), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public ResponseEntity<TipoTrabajoDTO> createTipoDeTrabajo(@Valid @RequestBody TipoTrabajoDTO tipoTrabajoDTO) {
-        return new ResponseEntity<>(tipoDeTrabajoService.createTipoDeTrabajo(tipoTrabajoDTO), HttpStatus.CREATED);
+    public ResponseEntity<TipoEmpleoDTO> createTipoDeTrabajo(@Valid @RequestBody TipoEmpleoDTO tipoEmpleoDTO) {
+        return new ResponseEntity<>(tipoDeTrabajoService.createTipoDeTrabajo(tipoEmpleoDTO), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{tipoDeTrabajoId}")
-    public ResponseEntity<TipoTrabajoDTO> updateTipoDeTrabajo(@PathVariable(name="tipoDeTrabajoId") Long tipoDeTrabajoId, @Valid @RequestBody TipoTrabajoDTO tipoTrabajoDTO) {
-        return new ResponseEntity<>(tipoDeTrabajoService.updateTipoDeTrabajo(tipoDeTrabajoId, tipoTrabajoDTO), HttpStatus.OK);
+    public ResponseEntity<TipoEmpleoDTO> updateTipoDeTrabajo(@PathVariable(name="tipoDeTrabajoId") Long tipoDeTrabajoId, @Valid @RequestBody TipoEmpleoDTO tipoEmpleoDTO) {
+        return new ResponseEntity<>(tipoDeTrabajoService.updateTipoDeTrabajo(tipoDeTrabajoId, tipoEmpleoDTO), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

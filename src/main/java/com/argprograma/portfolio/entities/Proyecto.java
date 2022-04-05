@@ -7,29 +7,32 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
+@Table(name="proyectos")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "experiencias_laborales")
-@Getter @Setter
-public class ExperienciaLaboral {
+public class Proyecto {
 
     @Id
     @Column(name="id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="nombre_empresa")
-    private String nombre_empresa;
-    @Column(name="es_trabajo_actual")
-    private Boolean es_trabajo_actual;
-    @Column(name="fecha_inicio")
-    private Date fecha_inicio;
-    @Column(name="fecha_fin")
-    private Date fecha_fin;
+
+    @Column(name="nombre")
+    private String nombre;
+
     @Column(name="descripcion")
     private String descripcion;
+
+    @Column(name="url_imagen")
+    private String url_imagen;
+
+    @Column(name="link")
+    private String link;
+
     @Column(name="orden", unique = true)
     private Integer orden;
 
@@ -37,8 +40,4 @@ public class ExperienciaLaboral {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="persona_id", nullable = false)
     private Persona persona;
-
-    @ManyToOne
-    @JoinColumn(name="tipo_empleo_id", nullable = false)
-    private TipoEmpleo tipo_empleo;
 }

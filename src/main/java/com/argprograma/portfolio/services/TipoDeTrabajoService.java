@@ -1,7 +1,7 @@
 package com.argprograma.portfolio.services;
 
-import com.argprograma.portfolio.dto.TipoTrabajoDTO;
-import com.argprograma.portfolio.entities.TipoTrabajo;
+import com.argprograma.portfolio.dto.TipoEmpleoDTO;
+import com.argprograma.portfolio.entities.TipoEmpleo;
 import com.argprograma.portfolio.exceptions.ResourceNotFoundException;
 import com.argprograma.portfolio.repositories.ITipoDeTrabajoRepository;
 import org.modelmapper.ModelMapper;
@@ -21,49 +21,49 @@ public class TipoDeTrabajoService implements ITipoTrabajoService {
     private ITipoDeTrabajoRepository tipoDeTrabajoRepository;
 
     @Override
-    public List<TipoTrabajoDTO> getAllTipoDeTrabajo() {
+    public List<TipoEmpleoDTO> getAllTipoDeTrabajo() {
         return  tipoDeTrabajoRepository.findAll().stream().map(tipoDeTrabajo -> mapToDTO(tipoDeTrabajo)).collect(Collectors.toList());
     }
 
     @Override
-    public TipoTrabajoDTO getTipoDeTrabajoById(Long tipoDeTrabajoId) {
-        TipoTrabajo tipoDeTrabajo = tipoDeTrabajoRepository.findById(tipoDeTrabajoId).orElseThrow(() -> new ResourceNotFoundException("Tipo De Trabajo", "tipodetrabajoId", tipoDeTrabajoId));
+    public TipoEmpleoDTO getTipoDeTrabajoById(Long tipoDeTrabajoId) {
+        TipoEmpleo tipoDeTrabajo = tipoDeTrabajoRepository.findById(tipoDeTrabajoId).orElseThrow(() -> new ResourceNotFoundException("Tipo De Trabajo", "tipodetrabajoId", tipoDeTrabajoId));
         return mapToDTO(tipoDeTrabajo);
     }
 
     @Override
-    public TipoTrabajoDTO createTipoDeTrabajo(TipoTrabajoDTO tipoTrabajoDTO) {
-        TipoTrabajo tipoTrabajo = mapToEntity(tipoTrabajoDTO);
+    public TipoEmpleoDTO createTipoDeTrabajo(TipoEmpleoDTO tipoEmpleoDTO) {
+        TipoEmpleo tipoEmpleo = mapToEntity(tipoEmpleoDTO);
 
-        System.out.println(tipoTrabajo.getNombre_tipo());
+        System.out.println(tipoEmpleo.getNombre_tipo());
 
-        TipoTrabajo newTipoDeTrabajo = tipoDeTrabajoRepository.save(tipoTrabajo);
+        TipoEmpleo newTipoDeTrabajo = tipoDeTrabajoRepository.save(tipoEmpleo);
 
         return mapToDTO(newTipoDeTrabajo);
     }
 
     @Override
-    public TipoTrabajoDTO updateTipoDeTrabajo(Long tipoDeTrabajoId, TipoTrabajoDTO tipoTrabajoDTO) {
-        TipoTrabajo tipoTrabajoToUpdate = tipoDeTrabajoRepository.findById(tipoDeTrabajoId).orElseThrow(() -> new ResourceNotFoundException("Tipo De Trabajo", "tipodetrabajoId", tipoDeTrabajoId));
+    public TipoEmpleoDTO updateTipoDeTrabajo(Long tipoDeTrabajoId, TipoEmpleoDTO tipoEmpleoDTO) {
+        TipoEmpleo tipoEmpleoToUpdate = tipoDeTrabajoRepository.findById(tipoDeTrabajoId).orElseThrow(() -> new ResourceNotFoundException("Tipo De Trabajo", "tipodetrabajoId", tipoDeTrabajoId));
 
-        tipoTrabajoToUpdate.setNombre_tipo(tipoTrabajoDTO.getNombre_tipo());
+        tipoEmpleoToUpdate.setNombre_tipo(tipoEmpleoDTO.getNombre_tipo());
 
-        TipoTrabajo tipoTrabajo = tipoDeTrabajoRepository.save(tipoTrabajoToUpdate);
+        TipoEmpleo tipoEmpleo = tipoDeTrabajoRepository.save(tipoEmpleoToUpdate);
 
-        return mapToDTO(tipoTrabajo);
+        return mapToDTO(tipoEmpleo);
     }
 
     @Override
     public void deleteTipoDeTrabajo(Long id) {
-        TipoTrabajo tipoDeTrabajo = tipoDeTrabajoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tipo De Trabajo", "tipodetrabajoId", id));
+        TipoEmpleo tipoDeTrabajo = tipoDeTrabajoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tipo De Trabajo", "tipodetrabajoId", id));
         tipoDeTrabajoRepository.delete(tipoDeTrabajo);
     }
 
-    private TipoTrabajoDTO mapToDTO(TipoTrabajo tipoDeTrabajo) {
-        return modelMapper.map(tipoDeTrabajo, TipoTrabajoDTO.class);
+    private TipoEmpleoDTO mapToDTO(TipoEmpleo tipoDeTrabajo) {
+        return modelMapper.map(tipoDeTrabajo, TipoEmpleoDTO.class);
     }
 
-    private TipoTrabajo mapToEntity(TipoTrabajoDTO tipoDeTrabajoDTO) {
-        return modelMapper.map(tipoDeTrabajoDTO, TipoTrabajo.class);
+    private TipoEmpleo mapToEntity(TipoEmpleoDTO tipoDeTrabajoDTO) {
+        return modelMapper.map(tipoDeTrabajoDTO, TipoEmpleo.class);
     }
 }
