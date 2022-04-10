@@ -24,18 +24,18 @@ public class PersonaController {
     }
 
     @PostMapping
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PersonaDTO> createPersona(@Valid @RequestBody PersonaDTO personaDTO) {
         return new ResponseEntity<>(personaService.createPersona(personaDTO), HttpStatus.OK);
     }
 
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping
     public ResponseEntity<PersonaDTO> updatePersona(@PathVariable(name = "personaId") Long personaId, @Valid @RequestBody PersonaDTO personaDTO) {
         return new ResponseEntity<>(personaService.updatePersona(personaId, personaDTO), HttpStatus.OK);
     }
 
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePersona(@PathVariable(name = "id") Long id) {
         personaService.deletePersona(id);

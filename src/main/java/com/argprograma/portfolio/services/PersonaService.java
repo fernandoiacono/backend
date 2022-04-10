@@ -1,6 +1,5 @@
 package com.argprograma.portfolio.services;
 
-
 import com.argprograma.portfolio.exceptions.ResourceNotFoundException;
 import com.argprograma.portfolio.repositories.IPersonaRepository;
 import org.modelmapper.ModelMapper;
@@ -22,6 +21,7 @@ public class PersonaService implements IPersonaService{
     @Override
     public PersonaDTO getPersonaById(Long id) {
         Persona persona = personaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Persona", "id", id));
+        //persona.setHabilidades(persona.getHabilidades().stream().sorted(Comparator.comparing(Habilidad::getOrden)).collect(Collectors.toList())); <-- Ordenar
         return mapToDTO(persona);
     }
 

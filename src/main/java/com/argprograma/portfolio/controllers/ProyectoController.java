@@ -32,7 +32,8 @@ public class ProyectoController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public ResponseEntity<ProyectoDTO> createProyecto(@PathVariable(name="personaId") Long personaId, @Valid @RequestBody ProyectoDTO proyectoDTO) {
+
+    public ResponseEntity<ProyectoDTO> createProyecto(@PathVariable(name="personaId") Long personaId, @Valid @RequestBody ProyectoDTO proyectoDTO /*, @RequestParam("image") MultiPartFile image*/) {
         return new ResponseEntity<>(proyectoService.createProyecto(personaId, proyectoDTO), HttpStatus.CREATED);
     }
 

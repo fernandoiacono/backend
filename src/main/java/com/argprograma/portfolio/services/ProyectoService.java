@@ -11,7 +11,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +53,12 @@ public class ProyectoService implements IProyectoService {
 
         Proyecto newProyecto = proyectoRepository.save(proyecto);
 
+        try {
+            saveUploadedFile(proyectoDTO.getFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return mapToDTO(newProyecto);
     }
 
@@ -57,7 +68,7 @@ public class ProyectoService implements IProyectoService {
         Proyecto proyecto = proyectoRepository.findById(proyectoId).orElseThrow(() -> new ResourceNotFoundException("Educacion", "id", proyectoId));
 
         if(!proyecto.getPersona().getId().equals(persona.getId())) {
-            throw new PortfolioAppException(HttpStatus.BAD_REQUEST, "el registro de habilidad no pertenece a la persona indicada");
+            throw new PortfolioAppException(HttpStatus.BAD_REQUEST, "el registro de proyecto no pertenece a la persona indicada");
         }
 
         proyecto.setNombre(proyectoDTO.getNombre());
@@ -67,6 +78,12 @@ public class ProyectoService implements IProyectoService {
         proyecto.setOrden(proyectoDTO.getOrden());
 
         Proyecto proyectoToUpdate = proyectoRepository.save(proyecto);
+
+        try {
+            saveUploadedFile(proyectoDTO.getFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return mapToDTO(proyectoToUpdate);
     }
@@ -94,5 +111,13 @@ public class ProyectoService implements IProyectoService {
 
     private Proyecto mapToEntity(ProyectoDTO proyectoDTO) {
         return modelMapper.map(proyectoDTO, Proyecto.class);
+    }
+
+    private void saveUploadedFile(MultipartFile file) throws IOException {
+        if (!file.isEmpty()) {
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get( System.getProperty("user.dir")+ "/proyectos-upload-img/" + file.getOriginalFilename());
+            Files.write(path, bytes);
+        }
     }
 }

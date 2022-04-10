@@ -13,6 +13,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter @Setter
@@ -72,9 +73,8 @@ public class PersonaDTO {
 
     @NotEmpty
     @NotBlank
-    private Set<Habilidad> habilidades = new HashSet<>();
-
+    private List<Habilidad> habilidades;
     @NotEmpty
     @NotBlank
-    private Set<Proyecto> proyectos = new HashSet<>();
+    private List<Proyecto> proyectos;
 }

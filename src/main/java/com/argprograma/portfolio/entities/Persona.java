@@ -1,14 +1,12 @@
 package com.argprograma.portfolio.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -66,9 +64,9 @@ public class Persona {
 
     @JsonBackReference
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Habilidad> habilidades = new HashSet<>();
+    private List<Habilidad> habilidades;
 
     @JsonBackReference
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Proyecto> proyectos = new HashSet<>();
+    private List<Proyecto> proyectos;
 }
