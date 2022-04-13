@@ -27,7 +27,7 @@ public class ExperienciaLaboralDTO {
     @NotBlank
     private String descripcion;
 
-    @Positive
+    //@Positive
     private Integer orden;
 
     @NotNull

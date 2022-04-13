@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tipodetrabajo")
+@RequestMapping("/api/tipoempleo")
 public class TipoTrabajoController {
     @Autowired
     private TipoDeTrabajoService tipoDeTrabajoService;
@@ -23,8 +23,8 @@ public class TipoTrabajoController {
         return new ResponseEntity<>(tipoDeTrabajoService.getAllTipoDeTrabajo(), HttpStatus.OK);
     }
 
-    @GetMapping("/{tipoDeTrabajoId}")
-    public ResponseEntity<TipoEmpleoDTO> getTipoDeTrabajoById(@PathVariable(name="tipoDeTrabajoId") Long tipoDeTrabajoId){
+    @GetMapping("/{tipoDeEmpleoId}")
+    public ResponseEntity<TipoEmpleoDTO> getTipoDeTrabajoById(@PathVariable(name="tipoDeEmpleoId") Long tipoDeTrabajoId){
         return new ResponseEntity<>(tipoDeTrabajoService.getTipoDeTrabajoById(tipoDeTrabajoId), HttpStatus.OK);
     }
 
@@ -35,20 +35,20 @@ public class TipoTrabajoController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{tipoDeTrabajoId}")
-    public ResponseEntity<TipoEmpleoDTO> updateTipoDeTrabajo(@PathVariable(name="tipoDeTrabajoId") Long tipoDeTrabajoId, @Valid @RequestBody TipoEmpleoDTO tipoEmpleoDTO) {
+    @PutMapping("/{tipoDeEmpleoId}")
+    public ResponseEntity<TipoEmpleoDTO> updateTipoDeTrabajo(@PathVariable(name="tipoDeEmpleoId") Long tipoDeTrabajoId, @Valid @RequestBody TipoEmpleoDTO tipoEmpleoDTO) {
         return new ResponseEntity<>(tipoDeTrabajoService.updateTipoDeTrabajo(tipoDeTrabajoId, tipoEmpleoDTO), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{tipoDeTrabajoId}")
-    public ResponseEntity<GenericResponseDTO> deleteTipoDeTrabajo(@PathVariable(name="tipoDeTrabajoId") Long tipoDeTrabajoId) {
+    @DeleteMapping("/{tipoDeEmpleoId}")
+    public ResponseEntity<GenericResponseDTO> deleteTipoDeTrabajo(@PathVariable(name="tipoDeEmpleoId") Long tipoDeTrabajoId) {
         tipoDeTrabajoService.deleteTipoDeTrabajo(tipoDeTrabajoId);
 
         GenericResponseDTO responseDTO = new GenericResponseDTO();
 
         responseDTO.setCode(1);
-        responseDTO.setMsg("El tipo de trabajo se eliminó correctamente");
+        responseDTO.setMsg("El tipo de empleo se eliminó correctamente");
 
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }

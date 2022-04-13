@@ -38,7 +38,7 @@ public class EducacionController {
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{educacionId}")
     public ResponseEntity<EducacionDTO> updateEducacion(@PathVariable(name="personaId") Long personaId, @PathVariable(name="educacionId") Long educacionId, @Valid @RequestBody EducacionDTO educacionDTO) {
-        return new ResponseEntity<>(educacionService.updateEducation(personaId, educacionId,educacionDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(educacionService.updateEducation(personaId, educacionId, educacionDTO), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -55,6 +55,6 @@ public class EducacionController {
             responseDTO.setMsg("ocurrió un error al eliminar el registro de educación");
         }
 
-        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }

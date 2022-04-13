@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -32,7 +33,6 @@ public class ProyectoController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-
     public ResponseEntity<ProyectoDTO> createProyecto(@PathVariable(name="personaId") Long personaId, @Valid @RequestBody ProyectoDTO proyectoDTO /*, @RequestParam("image") MultiPartFile image*/) {
         return new ResponseEntity<>(proyectoService.createProyecto(personaId, proyectoDTO), HttpStatus.CREATED);
     }
@@ -57,6 +57,13 @@ public class ProyectoController {
             responseDTO.setMsg("ocurrió un error al eliminar el proyecto");
         }
 
-        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @PostMapping("/{proyectoId}/uploadFile")
+    public ResponseEntity<GenericResponseDTO> uploadFile(@RequestParam("file") MultipartFile file) {
+        System.out.println(file.getOriginalFilename());
+        GenericResponseDTO responseDTO = new GenericResponseDTO();
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }

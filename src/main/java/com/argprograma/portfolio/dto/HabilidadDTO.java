@@ -21,11 +21,11 @@ public class HabilidadDTO {
     @Digits(integer = 3, fraction = 0)
     private Integer porcentaje;
 
-    @NotEmpty
-    @NotBlank
+    //@NotEmpty
+    //@NotBlank
     private String url_imagen;
 
-    @Positive
+    //@Positive
     private Integer orden;
 
 }

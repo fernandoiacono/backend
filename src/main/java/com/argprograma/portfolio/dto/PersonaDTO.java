@@ -4,21 +4,18 @@ import com.argprograma.portfolio.entities.Educacion;
 import com.argprograma.portfolio.entities.ExperienciaLaboral;
 import com.argprograma.portfolio.entities.Habilidad;
 import com.argprograma.portfolio.entities.Proyecto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Getter @Setter
 public class PersonaDTO {
 
+    @Positive
     private Long id;
 
     @NotEmpty
@@ -29,21 +26,21 @@ public class PersonaDTO {
     @NotBlank
     private String apellido;
 
-    @NotEmpty
-    @NotBlank
+    //@NotEmpty
+    //@NotBlank
     private String domicilio;
 
-    @NotEmpty
-    @NotBlank
+    //@NotEmpty
+    //@NotBlank
     private Date fecha_nac;
 
-    @NotEmpty
-    @NotBlank
+    //@NotEmpty
+    //@NotBlank
     @Size(max = 20, min = 10, message = "El telefono debe tener al menos 10 caracteres")
     private String telefono;
 
-    @NotEmpty
-    @NotBlank
+    //@NotEmpty
+    //@NotBlank
     @Email
     private String correo;
 
@@ -55,26 +52,27 @@ public class PersonaDTO {
     @NotBlank
     private String sobre_mi;
 
-    @NotEmpty
-    @NotBlank
+    //@NotEmpty
+    //@NotBlank
     private String url_foto;
 
     private String facebook_link;
 
     private String github_link;
 
-    @NotEmpty
-    @NotBlank
-    private Set<Educacion> educacion = new HashSet<>();
+    //@NotEmpty
+    //@NotBlank
+    private List<EducacionDTO> educacion;
 
-    @NotEmpty
-    @NotBlank
-    private Set<ExperienciaLaboral> experiencia_laboral = new HashSet<>();
+    //@NotEmpty
+    //@NotBlank
+    private List<ExperienciaLaboralDTO> experiencia_laboral;
 
-    @NotEmpty
-    @NotBlank
-    private List<Habilidad> habilidades;
-    @NotEmpty
-    @NotBlank
-    private List<Proyecto> proyectos;
+    //@NotEmpty
+    //@NotBlank
+    private List<HabilidadDTO> habilidades;
+
+    //@NotEmpty
+    //@NotBlank
+    private List<ProyectoDTO> proyectos;
 }

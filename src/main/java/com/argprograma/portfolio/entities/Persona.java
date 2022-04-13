@@ -56,11 +56,11 @@ public class Persona {
 
     @JsonBackReference
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Educacion> educacion = new HashSet<>();
+    private List<Educacion> educacion;
 
     @JsonBackReference
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ExperienciaLaboral> experiencia_laboral = new HashSet<>();
+    private List<ExperienciaLaboral> experiencia_laboral;
 
     @JsonBackReference
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)

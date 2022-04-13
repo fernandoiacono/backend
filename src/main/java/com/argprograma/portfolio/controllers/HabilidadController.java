@@ -39,7 +39,7 @@ public class HabilidadController {
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{habilidadId}")
     public ResponseEntity<HabilidadDTO> updateHabilidad(@PathVariable(name="personaId") Long personaId, @PathVariable(name="habilidadId") Long habilidadId, @Valid @RequestBody HabilidadDTO habilidadDTO) {
-        return new ResponseEntity<>(habilidadService.updateHabilidad(personaId, habilidadId, habilidadDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(habilidadService.updateHabilidad(personaId, habilidadId, habilidadDTO), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -56,6 +56,6 @@ public class HabilidadController {
             responseDTO.setMsg("ocurrió un error al eliminar el registro de habilidad");
         }
 
-        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }

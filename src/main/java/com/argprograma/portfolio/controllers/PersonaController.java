@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/persona")
 public class PersonaController {
 
@@ -23,16 +22,16 @@ public class PersonaController {
         return new ResponseEntity<>(personaService.getPersonaById(id), HttpStatus.OK);
     }
 
-    @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping
     public ResponseEntity<PersonaDTO> createPersona(@Valid @RequestBody PersonaDTO personaDTO) {
-        return new ResponseEntity<>(personaService.createPersona(personaDTO), HttpStatus.OK);
+        return new ResponseEntity<>(personaService.createPersona(personaDTO), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping
-    public ResponseEntity<PersonaDTO> updatePersona(@PathVariable(name = "personaId") Long personaId, @Valid @RequestBody PersonaDTO personaDTO) {
-        return new ResponseEntity<>(personaService.updatePersona(personaId, personaDTO), HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<PersonaDTO> updatePersona(@PathVariable(name = "id") Long id, @Valid @RequestBody PersonaDTO personaDTO) {
+        return new ResponseEntity<>(personaService.updatePersona(id, personaDTO), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

@@ -24,7 +24,7 @@ public class EducacionDTO {
     @NotBlank
     private String titulo;
 
-    @Positive
+    //@Positive
     private Integer orden;
 
 }

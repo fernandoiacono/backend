@@ -61,6 +61,9 @@ public class ExperienciaLaboralService implements IExperienciaLaboralService{
             throw new PortfolioAppException(HttpStatus.BAD_REQUEST, "el registro de experiencia laboral no pertenece a la persona indicada");
         }
 
+        if(experienciaLaboralDTO.getOrden() < 0)
+            throw new PortfolioAppException(HttpStatus.BAD_REQUEST, "el orden debe ser mayor a 0");
+
         experienciaLaboral.setNombre_empresa(experienciaLaboralDTO.getNombre_empresa());
         experienciaLaboral.setDescripcion(experienciaLaboralDTO.getDescripcion());
         experienciaLaboral.setOrden(experienciaLaboralDTO.getOrden());

@@ -50,9 +50,10 @@ public class PersonaService implements IPersonaService{
         persona.setUrl_foto(personaDTO.getUrl_foto());
         persona.setFacebook_link(personaDTO.getFacebook_link());
         persona.setGithub_link(personaDTO.getGithub_link());
-        persona.setEducacion(personaDTO.getEducacion());
-        persona.setExperiencia_laboral(personaDTO.getExperiencia_laboral());
-        persona.setHabilidades(personaDTO.getHabilidades());
+        //persona.setEducacion(personaDTO.getEducacion());
+        //persona.setExperiencia_laboral(personaDTO.getExperiencia_laboral());
+        //persona.setHabilidades(personaDTO.getHabilidades());
+        //persona.setProyectos(persona.getProyectos());
 
         Persona personaToUpdate = personaRepository.save(persona);
         return mapToDTO(personaToUpdate);

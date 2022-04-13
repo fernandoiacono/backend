@@ -63,6 +63,9 @@ public class EducacionService implements IEducacionService {
             throw new PortfolioAppException(HttpStatus.BAD_REQUEST, "el registro de educación no pertenece a la persona indicada");
         }
 
+        if(educacionDTO.getOrden() < 0)
+            throw new PortfolioAppException(HttpStatus.BAD_REQUEST, "el orden debe ser mayor a 0");
+
         educacion.setEstablecimiento(educacionDTO.getEstablecimiento());
         educacion.setNivel(educacionDTO.getNivel());
         educacion.setTitulo(educacionDTO.getTitulo());

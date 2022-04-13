@@ -25,13 +25,13 @@ public class ProyectoDTO {
     @NotBlank
     private String url_imagen;
 
-    private MultipartFile file;
+    //private MultipartFile file;
 
     @NotEmpty
     @NotBlank
     private String link;
 
-    @Positive
+    //@Positive
     private Integer orden;
 
 }

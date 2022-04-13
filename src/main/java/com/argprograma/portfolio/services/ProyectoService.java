@@ -53,11 +53,11 @@ public class ProyectoService implements IProyectoService {
 
         Proyecto newProyecto = proyectoRepository.save(proyecto);
 
-        try {
-            saveUploadedFile(proyectoDTO.getFile());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            saveUploadedFile(proyectoDTO.getFile());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         return mapToDTO(newProyecto);
     }
@@ -79,11 +79,11 @@ public class ProyectoService implements IProyectoService {
 
         Proyecto proyectoToUpdate = proyectoRepository.save(proyecto);
 
-        try {
-            saveUploadedFile(proyectoDTO.getFile());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            saveUploadedFile(proyectoDTO.getFile());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         return mapToDTO(proyectoToUpdate);
     }

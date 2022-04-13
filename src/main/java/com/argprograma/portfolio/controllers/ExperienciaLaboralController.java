@@ -38,7 +38,7 @@ public class ExperienciaLaboralController {
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{experienciaLaboralId}")
     public ResponseEntity<ExperienciaLaboralDTO> updateExperienciaLaboral(@PathVariable(name="personaId") Long personaId, @PathVariable(name="experienciaLaboralId") Long experienciaLaboralId, @Valid @RequestBody ExperienciaLaboralDTO experienciaLaboralDTO) {
-        return new ResponseEntity<>(experienciaLaboralService.updateExperienciaLaboral(personaId, experienciaLaboralId, experienciaLaboralDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(experienciaLaboralService.updateExperienciaLaboral(personaId, experienciaLaboralId, experienciaLaboralDTO), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -55,6 +55,6 @@ public class ExperienciaLaboralController {
             responseDTO.setMsg("ocurrió un error al eliminar el registro de experiencia laboral");
         }
 
-        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }
