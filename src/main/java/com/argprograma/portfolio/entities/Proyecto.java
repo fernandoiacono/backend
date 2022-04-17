@@ -28,8 +28,8 @@ public class Proyecto {
     @Column(name="descripcion")
     private String descripcion;
 
-    @Column(name="url_imagen")
-    private String url_imagen;
+    @Column(name="file_type")
+    private String file_type;
 
     @Column(name="link")
     private String link;

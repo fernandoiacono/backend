@@ -50,10 +50,10 @@ public class HabilidadController {
 
         if(habilidadService.deleteHabilidad(personaId, habilidadId)) {
             responseDTO.setCode(1);
-            responseDTO.setMsg("el registro de habilidad se eliminó correctamente");
+            responseDTO.setMsg("El registro de habilidad se eliminó correctamente");
         } else {
             responseDTO.setCode(-1);
-            responseDTO.setMsg("ocurrió un error al eliminar el registro de habilidad");
+            responseDTO.setMsg("Ocurrió un error al eliminar el registro de habilidad");
         }
 
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);

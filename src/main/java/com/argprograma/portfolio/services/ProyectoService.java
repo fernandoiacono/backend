@@ -12,11 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.apache.commons.io.FilenameUtils;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,7 +49,7 @@ public class ProyectoService implements IProyectoService {
     }
 
     @Override
-    public ProyectoDTO createProyecto(Long personaId, ProyectoDTO proyectoDTO) {
+    public ProyectoDTO createProyecto(Long personaId, ProyectoDTO proyectoDTO, MultipartFile file) {
         Proyecto proyecto = mapToEntity(proyectoDTO);
         Persona persona = personaRepository.findById(personaId).orElseThrow(() -> new ResourceNotFoundException("Persona", "id", personaId));
 
@@ -53,17 +57,17 @@ public class ProyectoService implements IProyectoService {
 
         Proyecto newProyecto = proyectoRepository.save(proyecto);
 
-//        try {
-//            saveUploadedFile(proyectoDTO.getFile());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            saveUploadedFile(personaId, newProyecto.getId(), file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return mapToDTO(newProyecto);
     }
 
     @Override
-    public ProyectoDTO updateProyecto(Long personaId, Long proyectoId, ProyectoDTO proyectoDTO) {
+    public ProyectoDTO updateProyecto(Long personaId, Long proyectoId, ProyectoDTO proyectoDTO, MultipartFile file) {
         Persona persona = personaRepository.findById(personaId).orElseThrow(() -> new ResourceNotFoundException("Persona", "id", personaId));
         Proyecto proyecto = proyectoRepository.findById(proyectoId).orElseThrow(() -> new ResourceNotFoundException("Educacion", "id", proyectoId));
 
@@ -73,17 +77,17 @@ public class ProyectoService implements IProyectoService {
 
         proyecto.setNombre(proyectoDTO.getNombre());
         proyecto.setDescripcion(proyectoDTO.getDescripcion());
-        proyecto.setUrl_imagen(proyectoDTO.getUrl_imagen());
+        proyecto.setFile_type(proyectoDTO.getFile_type());
         proyecto.setLink(proyectoDTO.getLink());
         proyecto.setOrden(proyectoDTO.getOrden());
 
         Proyecto proyectoToUpdate = proyectoRepository.save(proyecto);
 
-//        try {
-//            saveUploadedFile(proyectoDTO.getFile());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            saveUploadedFile(personaId, proyectoId, file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return mapToDTO(proyectoToUpdate);
     }
@@ -98,9 +102,16 @@ public class ProyectoService implements IProyectoService {
         }
 
         try {
+            deleteUploadedFile(personaId, proyectoId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
             proyectoRepository.delete(proyecto);
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -113,11 +124,38 @@ public class ProyectoService implements IProyectoService {
         return modelMapper.map(proyectoDTO, Proyecto.class);
     }
 
-    private void saveUploadedFile(MultipartFile file) throws IOException {
+    private void saveUploadedFile(Long personaId, Long proyectoId, MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get( System.getProperty("user.dir")+ "/proyectos-upload-img/" + file.getOriginalFilename());
-            Files.write(path, bytes);
+            try (InputStream inputStream = file.getInputStream()) {
+                //byte[] bytes = file.getBytes();
+                //System.out.println(FilenameUtils.getExtension(file.getOriginalFilename()) );
+
+                //Borro los archivos con el mismo nombre, pero diferente extentción.
+                deleteUploadedFile(personaId, proyectoId);
+
+                //Compruebo que este creado el directorio para el proyecto, si no lo esta, lo crea.
+                new File(System.getProperty("user.dir") + "/proyectos-upload-img/" + personaId + "/").mkdir();
+
+                //Creo el nuevo Path con el nombre del archivo nuevo.
+                Path path = Paths.get(System.getProperty("user.dir") + "/proyectos-upload-img/" + personaId + "/" + proyectoId + "." + FilenameUtils.getExtension(file.getOriginalFilename()));
+
+                //Crea el archivo, pisandolo si existe uno con el mismo nombre.
+                Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioe) {
+                throw new IOException("Error al guardar el archivo: " + file.getOriginalFilename(), ioe);
+            }
         }
     }
+
+    private void deleteUploadedFile(Long personaId, Long proyectoId) {
+        File folder = new File(System.getProperty("user.dir") + "/proyectos-upload-img/" + personaId + "/");
+        File[] fList = folder.listFiles();
+        assert fList != null;
+        for (File f : fList) {
+            if (f.getName().startsWith(proyectoId.toString() + '.')) {
+                f.delete();
+            }
+        }
+    }
+
 }

@@ -49,10 +49,10 @@ public class EducacionController {
 
         if(educacionService.deleteEducation(personaId, educacionId)) {
             responseDTO.setCode(1);
-            responseDTO.setMsg("el registro de educación se eliminó correctamente");
+            responseDTO.setMsg("El registro de educación se eliminó correctamente");
         } else {
             responseDTO.setCode(-1);
-            responseDTO.setMsg("ocurrió un error al eliminar el registro de educación");
+            responseDTO.setMsg("Ocurrió un error al eliminar el registro de educación");
         }
 
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);

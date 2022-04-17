@@ -49,10 +49,10 @@ public class ExperienciaLaboralController {
 
         if(experienciaLaboralService.deleteExperienciaLaboral(personaId, experienciaLaboralId)) {
             responseDTO.setCode(1);
-            responseDTO.setMsg("el registro de experiencia laboral se eliminó correctamente");
+            responseDTO.setMsg("El registro de experiencia laboral se eliminó correctamente");
         } else {
             responseDTO.setCode(-1);
-            responseDTO.setMsg("ocurrió un error al eliminar el registro de experiencia laboral");
+            responseDTO.setMsg("Ocurrió un error al eliminar el registro de experiencia laboral");
         }
 
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
