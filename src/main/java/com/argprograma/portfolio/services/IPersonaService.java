@@ -1,6 +1,7 @@
 package com.argprograma.portfolio.services;
 
 import com.argprograma.portfolio.dto.PersonaDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface IPersonaService {
 
@@ -10,6 +11,10 @@ public interface IPersonaService {
 
     PersonaDTO updatePersona(Long id, PersonaDTO personaDTO);
 
-    void deletePersona(Long id);
+    boolean deletePersona(Long id);
+
+    PersonaDTO uploadProfileImage(Long personaId, MultipartFile file);
+
+    boolean deleteProfileImage(Long personaId);
 
 }

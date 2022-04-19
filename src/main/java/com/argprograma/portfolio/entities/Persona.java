@@ -45,8 +45,8 @@ public class Persona {
     @Column(name="sobre_mi")
     private String sobre_mi;
 
-    @Column(name="url_foto")
-    private String url_foto;
+    @Column(name="file_type")
+    private String file_type;
 
     @Column(name="facebook_link")
     private String facebook_link;

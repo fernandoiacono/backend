@@ -3,13 +3,19 @@ package com.argprograma.portfolio.controllers;
 import com.argprograma.portfolio.dto.GenericResponseDTO;
 import com.argprograma.portfolio.dto.HabilidadDTO;
 import com.argprograma.portfolio.services.HabilidadService;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 @RestController
@@ -24,6 +30,23 @@ public class HabilidadController {
         return new ResponseEntity<>(habilidadService.getAllHabilidadByPersonaId(personaId), HttpStatus.OK);
     }
 
+    @GetMapping("/{habilidadId}/downloadImage/{extension}")
+    public ResponseEntity<?> getImage(@PathVariable(name="personaId") Long personaId,
+                                      @PathVariable(name="habilidadId") Long habilidadId,
+                                      @PathVariable("extension") String extension) {
+        //byte[] image = new byte[0];
+        try {
+            File file = new File(System.getProperty("user.dir")+ "/habilidades-upload-img/" + personaId + "/" + habilidadId + "." + extension);
+            byte[] image = FileUtils.readFileToByteArray(file);
+            Path path = file.toPath();
+            MediaType mediaType = MediaType.parseMediaType(Files.probeContentType(path));
+            return ResponseEntity.ok().contentType(mediaType).body(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Archivo no encontrado", HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{habilidadId}")
     public ResponseEntity<HabilidadDTO> getHabilidadById(@PathVariable(name="habilidadId") Long habilidadId){
@@ -32,14 +55,39 @@ public class HabilidadController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public ResponseEntity<HabilidadDTO> createHabilidad(@PathVariable(name="personaId") Long personaId, @Valid @RequestBody HabilidadDTO habilidadDTO) {
-        return new ResponseEntity<>(habilidadService.createHabilidad(personaId, habilidadDTO), HttpStatus.CREATED);
+    public ResponseEntity<HabilidadDTO> createHabilidad(@PathVariable(name="personaId") Long personaId,
+                                                        @RequestParam("file") MultipartFile file,
+                                                        @RequestParam("nombre") String nombre,
+                                                        @RequestParam("porcentaje") Integer porcentaje,
+                                                        @RequestParam("file_type") String file_type,
+                                                        @RequestParam("orden") Integer orden) {
+
+        HabilidadDTO habilidadDTO = new HabilidadDTO();
+        habilidadDTO.setNombre(nombre);
+        habilidadDTO.setPorcentaje(porcentaje);
+        habilidadDTO.setFile_type(file_type);
+        habilidadDTO.setOrden(orden);
+
+        return new ResponseEntity<>(habilidadService.createHabilidad(personaId, habilidadDTO, file), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{habilidadId}")
-    public ResponseEntity<HabilidadDTO> updateHabilidad(@PathVariable(name="personaId") Long personaId, @PathVariable(name="habilidadId") Long habilidadId, @Valid @RequestBody HabilidadDTO habilidadDTO) {
-        return new ResponseEntity<>(habilidadService.updateHabilidad(personaId, habilidadId, habilidadDTO), HttpStatus.OK);
+    @PostMapping("/{habilidadId}")
+    public ResponseEntity<HabilidadDTO> updateHabilidad(@PathVariable(name="personaId") Long personaId,
+                                                        @PathVariable(name="habilidadId") Long habilidadId,
+                                                        @RequestParam("file") MultipartFile file,
+                                                        @RequestParam("nombre") String nombre,
+                                                        @RequestParam("porcentaje") Integer porcentaje,
+                                                        @RequestParam("file_type") String file_type,
+                                                        @RequestParam("orden") Integer orden) {
+
+        HabilidadDTO habilidadDTO = new HabilidadDTO();
+        habilidadDTO.setNombre(nombre);
+        habilidadDTO.setPorcentaje(porcentaje);
+        habilidadDTO.setFile_type(file_type);
+        habilidadDTO.setOrden(orden);
+
+        return new ResponseEntity<>(habilidadService.updateHabilidad(personaId, habilidadId, habilidadDTO, file), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

@@ -23,7 +23,7 @@ public class HabilidadDTO {
 
     //@NotEmpty
     //@NotBlank
-    private String url_imagen;
+    private String file_type;
 
     //@Positive
     private Integer orden;

@@ -29,7 +29,7 @@ public class PortfolioApplication {
 	public static void main(String[] args) {
 		new File(System.getProperty("user.dir")+ "/proyectos-upload-img/").mkdir();
 		new File(System.getProperty("user.dir")+ "/persona-upload-img/").mkdir();
-		new File(System.getProperty("user.dir")+ "/habilidades-profile-upload-img/").mkdir();
+		new File(System.getProperty("user.dir")+ "/habilidades-upload-img/").mkdir();
 
 		SpringApplication.run(PortfolioApplication.class, args);
 	}

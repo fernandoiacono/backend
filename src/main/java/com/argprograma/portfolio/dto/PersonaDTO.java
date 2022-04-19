@@ -1,10 +1,5 @@
 package com.argprograma.portfolio.dto;
 
-import com.argprograma.portfolio.entities.Educacion;
-import com.argprograma.portfolio.entities.ExperienciaLaboral;
-import com.argprograma.portfolio.entities.Habilidad;
-import com.argprograma.portfolio.entities.Proyecto;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,7 +49,7 @@ public class PersonaDTO {
 
     //@NotEmpty
     //@NotBlank
-    private String url_foto;
+    private String file_type;
 
     private String facebook_link;
 
