@@ -51,8 +51,8 @@ public class PersonaService implements IPersonaService{
         persona.setNombre(personaDTO.getNombre());
         persona.setApellido(personaDTO.getApellido());
         persona.setCorreo(personaDTO.getCorreo());
-        persona.setDomicilio(personaDTO.getDomicilio());
-        persona.setTelefono(personaDTO.getTelefono());
+        //persona.setDomicilio(personaDTO.getDomicilio());
+        //persona.setTelefono(personaDTO.getTelefono());
         persona.setDescripcion(personaDTO.getDescripcion());
         persona.setSobre_mi(personaDTO.getSobre_mi());
         persona.setFecha_nac(personaDTO.getFecha_nac());

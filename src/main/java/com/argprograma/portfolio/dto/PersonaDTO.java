@@ -23,7 +23,7 @@ public class PersonaDTO {
 
     //@NotEmpty
     //@NotBlank
-    private String domicilio;
+    //private String domicilio;
 
     //@NotEmpty
     //@NotBlank
@@ -31,8 +31,8 @@ public class PersonaDTO {
 
     //@NotEmpty
     //@NotBlank
-    @Size(max = 20, min = 10, message = "El telefono debe tener al menos 10 caracteres")
-    private String telefono;
+    //@Size(max = 20, min = 10, message = "El telefono debe tener al menos 10 caracteres")
+    //private String telefono;
 
     //@NotEmpty
     //@NotBlank
