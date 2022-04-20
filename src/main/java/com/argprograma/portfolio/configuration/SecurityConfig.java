@@ -4,6 +4,7 @@ import com.argprograma.portfolio.security.CustomUserDetailsService;
 import com.argprograma.portfolio.security.JwtAuthenticationEntryPoint;
 import com.argprograma.portfolio.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -27,6 +28,10 @@ import java.util.Arrays;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Value("${app.AllowedOrigin}")
+    private String allowedOrigin;
+
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
@@ -75,11 +80,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowedOrigins(Arrays.asList(allowedOrigin));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PUT","PATCH"));
         configuration.setAllowCredentials(true);
         //the below three lines will add the relevant CORS response headers
-        configuration.addAllowedOrigin("http://localhost:4200");
+        configuration.addAllowedOrigin(allowedOrigin);
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         /*configuration.addAllowedMethod("GET");
