@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface IProyectoService {
 
-    public List<ProyectoDTO> getAllProyectoByPersonaId(Long personaId);
+    List<ProyectoDTO> getAllProyectoByPersonaId(Long personaId);
 
-    public ProyectoDTO getProyectoById(Long id);
+    ProyectoDTO getProyectoById(Long id);
 
-    public ProyectoDTO createProyecto(Long personaId, ProyectoDTO proyectoDTO, MultipartFile file);
+    ProyectoDTO createProyecto(Long personaId, ProyectoDTO proyectoDTO, MultipartFile file);
 
-    public ProyectoDTO updateProyecto(Long personaId, Long proyectoId, ProyectoDTO proyectoDTO, MultipartFile file);
+    ProyectoDTO updateProyecto(Long personaId, Long proyectoId, ProyectoDTO proyectoDTO, MultipartFile file);
 
-    public boolean deleteProyecto(Long personaId, Long proyectoId);
+    boolean deleteProyecto(Long personaId, Long proyectoId);
 }

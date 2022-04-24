@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface IEducacionService {
 
-    public List<EducacionDTO> getAllEducationByPersonId(Long personaId);
+    List<EducacionDTO> getAllEducationByPersonId(Long personaId);
 
-    public EducacionDTO getEducationById(Long id);
+    EducacionDTO getEducationById(Long id);
 
-    public EducacionDTO createEducation(Long personaId, EducacionDTO educacionDTO);
+    EducacionDTO createEducation(Long personaId, EducacionDTO educacionDTO);
 
-    public EducacionDTO updateEducation(Long personaId, Long educationId, EducacionDTO educacionDTO);
+    EducacionDTO updateEducation(Long personaId, Long educationId, EducacionDTO educacionDTO);
 
-    public boolean deleteEducation(Long personaId, Long educacionId);
+    boolean deleteEducation(Long personaId, Long educacionId);
 
 }

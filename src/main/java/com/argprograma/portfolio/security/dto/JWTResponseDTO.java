@@ -1,4 +1,4 @@
-package com.argprograma.portfolio.dto;
+package com.argprograma.portfolio.security.dto;
 
 import lombok.Getter;
 import lombok.Setter;

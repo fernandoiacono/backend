@@ -1,13 +1,13 @@
-package com.argprograma.portfolio.controllers;
+package com.argprograma.portfolio.security.controllers;
 
-import com.argprograma.portfolio.dto.JWTResponseDTO;
-import com.argprograma.portfolio.dto.LoginDTO;
-import com.argprograma.portfolio.dto.RegisterDTO;
-import com.argprograma.portfolio.entities.PortfolioUser;
-import com.argprograma.portfolio.entities.Role;
-import com.argprograma.portfolio.repositories.IPortfolioUserRepository;
-import com.argprograma.portfolio.repositories.IRoleRepository;
-import com.argprograma.portfolio.security.JwtTokenProvider;
+import com.argprograma.portfolio.security.dto.JWTResponseDTO;
+import com.argprograma.portfolio.security.dto.LoginDTO;
+import com.argprograma.portfolio.security.dto.RegisterDTO;
+import com.argprograma.portfolio.security.entities.PortfolioUser;
+import com.argprograma.portfolio.security.entities.Role;
+import com.argprograma.portfolio.security.repositories.IPortfolioUserRepository;
+import com.argprograma.portfolio.security.repositories.IRoleRepository;
+import com.argprograma.portfolio.security.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -56,7 +56,7 @@ public class PersonaService implements IPersonaService{
         persona.setDescripcion(personaDTO.getDescripcion());
         persona.setSobre_mi(personaDTO.getSobre_mi());
         persona.setFecha_nac(personaDTO.getFecha_nac());
-        persona.setFile_type(personaDTO.getFile_type());
+        persona.setExtension(personaDTO.getExtension());
         persona.setFacebook_link(personaDTO.getFacebook_link());
         persona.setGithub_link(personaDTO.getGithub_link());
         //persona.setEducacion(personaDTO.getEducacion());
@@ -85,7 +85,7 @@ public class PersonaService implements IPersonaService{
     public PersonaDTO uploadProfileImage(Long personaId, MultipartFile file, String file_type) {
         Persona persona = personaRepository.findById(personaId).orElseThrow(() -> new ResourceNotFoundException("Persona", "id", personaId));
 
-        persona.setFile_type(file_type);
+        persona.setExtension(file_type);
         Persona personaToUpdate = new Persona();
 
         try {
@@ -102,7 +102,7 @@ public class PersonaService implements IPersonaService{
     public boolean deleteProfileImage(Long personaId) {
         Persona persona = personaRepository.findById(personaId).orElseThrow(() -> new ResourceNotFoundException("Persona", "id", personaId));
 
-        persona.setFile_type("");
+        persona.setExtension("");
         Persona personaToUpdate = new Persona();
 
         try {

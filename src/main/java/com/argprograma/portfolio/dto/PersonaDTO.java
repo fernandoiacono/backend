@@ -49,7 +49,7 @@ public class PersonaDTO {
 
     //@NotEmpty
     //@NotBlank
-    private String file_type;
+    private String extension;
 
     private String facebook_link;
 

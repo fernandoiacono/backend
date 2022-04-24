@@ -1,4 +1,4 @@
-package com.argprograma.portfolio.security;
+package com.argprograma.portfolio.security.jwt;
 
 import com.argprograma.portfolio.exceptions.PortfolioAppException;
 import io.jsonwebtoken.*;

@@ -77,7 +77,7 @@ public class HabilidadService implements IHabilidadService {
 
         habilidad.setNombre(habilidadDTO.getNombre());
         habilidad.setPorcentaje(habilidadDTO.getPorcentaje());
-        habilidad.setFile_type(habilidadDTO.getFile_type());
+        habilidad.setExtension(habilidadDTO.getExtension());
         habilidad.setOrden(habilidadDTO.getOrden());
 
         Habilidad habilidadToUpdate = hablidadRepository.save(habilidad);

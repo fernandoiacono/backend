@@ -25,14 +25,14 @@ public class Persona {
     @Column(name="apellido")
     private String apellido;
 
-    @Column(name="domicilio")
-    private String domicilio;
+//    @Column(name="domicilio")
+//    private String domicilio;
 
     @Column(name="fecha_nac")
     private Date fecha_nac;
 
-    @Column(name="telefono")
-    private String telefono;
+//    @Column(name="telefono")
+//    private String telefono;
 
     @Column(name="correo", unique = true)
     private String correo;
@@ -43,8 +43,8 @@ public class Persona {
     @Column(name="sobre_mi")
     private String sobre_mi;
 
-    @Column(name="file_type")
-    private String file_type;
+    @Column(name="extension")
+    private String extension;
 
     @Column(name="facebook_link")
     private String facebook_link;

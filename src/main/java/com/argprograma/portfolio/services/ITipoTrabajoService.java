@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface ITipoTrabajoService {
 
-    public List<TipoEmpleoDTO> getAllTipoDeTrabajo();
+    List<TipoEmpleoDTO> getAllTipoDeTrabajo();
 
-    public TipoEmpleoDTO getTipoDeTrabajoById(Long id);
+    TipoEmpleoDTO getTipoDeTrabajoById(Long id);
 
-    public TipoEmpleoDTO createTipoDeTrabajo(TipoEmpleoDTO tipoEmpleoDTO);
+    TipoEmpleoDTO createTipoDeTrabajo(TipoEmpleoDTO tipoEmpleoDTO);
 
-    public TipoEmpleoDTO updateTipoDeTrabajo(Long tipoDeTrabajoId, TipoEmpleoDTO tipoEmpleoDTO);
+    TipoEmpleoDTO updateTipoDeTrabajo(Long tipoDeTrabajoId, TipoEmpleoDTO tipoEmpleoDTO);
 
-    public void deleteTipoDeTrabajo(Long id);
+    void deleteTipoDeTrabajo(Long id);
 
 }

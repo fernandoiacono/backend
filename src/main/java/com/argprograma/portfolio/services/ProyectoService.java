@@ -77,7 +77,7 @@ public class ProyectoService implements IProyectoService {
 
         proyecto.setNombre(proyectoDTO.getNombre());
         proyecto.setDescripcion(proyectoDTO.getDescripcion());
-        proyecto.setFile_type(proyectoDTO.getFile_type());
+        proyecto.setExtension(proyectoDTO.getExtension());
         proyecto.setLink(proyectoDTO.getLink());
         proyecto.setOrden(proyectoDTO.getOrden());
 

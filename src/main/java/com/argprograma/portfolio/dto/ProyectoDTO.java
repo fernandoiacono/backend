@@ -20,7 +20,7 @@ public class ProyectoDTO {
 
 //    @NotEmpty
 //    @NotBlank
-    private String file_type;
+    private String extension;
 
     @NotEmpty
     @NotBlank

@@ -1,4 +1,4 @@
-package com.argprograma.portfolio.security;
+package com.argprograma.portfolio.security.jwt;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

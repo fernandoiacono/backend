@@ -1,8 +1,8 @@
-package com.argprograma.portfolio.configuration;
+package com.argprograma.portfolio.security.configuration;
 
-import com.argprograma.portfolio.security.CustomUserDetailsService;
-import com.argprograma.portfolio.security.JwtAuthenticationEntryPoint;
-import com.argprograma.portfolio.security.JwtAuthenticationFilter;
+import com.argprograma.portfolio.security.services.CustomUserDetailsService;
+import com.argprograma.portfolio.security.jwt.JwtAuthenticationEntryPoint;
+import com.argprograma.portfolio.security.jwt.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

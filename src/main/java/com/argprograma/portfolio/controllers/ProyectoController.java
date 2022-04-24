@@ -58,14 +58,14 @@ public class ProyectoController {
                                                       @RequestParam("file") MultipartFile file,
                                                       @RequestParam("nombre") String nombre,
                                                       @RequestParam("descripcion") String descripcion,
-                                                      @RequestParam("file_type") String file_type,
+                                                      @RequestParam("extension") String extension,
                                                       @RequestParam("link") String link,
                                                       @RequestParam("orden") String orden) {
 
         ProyectoDTO proyectoDTO = new ProyectoDTO();
         proyectoDTO.setNombre(nombre);
         proyectoDTO.setDescripcion(descripcion);
-        proyectoDTO.setFile_type(file_type);
+        proyectoDTO.setExtension(extension);
         proyectoDTO.setLink(link);
         proyectoDTO.setOrden(Integer.parseInt(orden));
 
@@ -79,14 +79,14 @@ public class ProyectoController {
                                                       @RequestParam("file") MultipartFile file,
                                                       @RequestParam("nombre") String nombre,
                                                       @RequestParam("descripcion") String descripcion,
-                                                      @RequestParam("file_type") String file_type,
+                                                      @RequestParam("extension") String extension,
                                                       @RequestParam("link") String link,
                                                       @RequestParam("orden") String orden) {
         ProyectoDTO proyectoDTO = new ProyectoDTO();
         proyectoDTO.setId(proyectoId);
         proyectoDTO.setNombre(nombre);
         proyectoDTO.setDescripcion(descripcion);
-        proyectoDTO.setFile_type(file_type);
+        proyectoDTO.setExtension(extension);
         proyectoDTO.setLink(link);
         proyectoDTO.setOrden(Integer.parseInt(orden));
 

@@ -1,8 +1,8 @@
-package com.argprograma.portfolio.security;
+package com.argprograma.portfolio.security.services;
 
-import com.argprograma.portfolio.entities.PortfolioUser;
-import com.argprograma.portfolio.entities.Role;
-import com.argprograma.portfolio.repositories.IPortfolioUserRepository;
+import com.argprograma.portfolio.security.entities.PortfolioUser;
+import com.argprograma.portfolio.security.entities.Role;
+import com.argprograma.portfolio.security.repositories.IPortfolioUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -23,7 +23,7 @@ public class HabilidadDTO {
 
     //@NotEmpty
     //@NotBlank
-    private String file_type;
+    private String extension;
 
     //@Positive
     private Integer orden;

@@ -1,4 +1,4 @@
-package com.argprograma.portfolio.entities;
+package com.argprograma.portfolio.security.entities;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface IHabilidadService {
 
-    public List<HabilidadDTO> getAllHabilidadByPersonaId(Long personaId);
+    List<HabilidadDTO> getAllHabilidadByPersonaId(Long personaId);
 
-    public HabilidadDTO getHabilidadById(Long id);
+    HabilidadDTO getHabilidadById(Long id);
 
-    public HabilidadDTO createHabilidad(Long personaId, HabilidadDTO habilidadDTO, MultipartFile file);
+    HabilidadDTO createHabilidad(Long personaId, HabilidadDTO habilidadDTO, MultipartFile file);
 
-    public HabilidadDTO updateHabilidad(Long personaId, Long habilidadId, HabilidadDTO habilidadDTO, MultipartFile file);
+    HabilidadDTO updateHabilidad(Long personaId, Long habilidadId, HabilidadDTO habilidadDTO, MultipartFile file);
 
-    public boolean deleteHabilidad(Long personaId, Long habilidadId);
+    boolean deleteHabilidad(Long personaId, Long habilidadId);
 
 }

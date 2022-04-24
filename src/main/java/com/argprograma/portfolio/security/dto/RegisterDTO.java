@@ -1,4 +1,4 @@
-package com.argprograma.portfolio.dto;
+package com.argprograma.portfolio.security.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,13 +6,16 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
-@Getter
-@Setter
-public class LoginDTO {
+@Getter @Setter
+public class RegisterDTO {
 
     @NotEmpty
     @NotBlank
-    private String usernameOrEmail;
+    private String username;
+
+    @NotEmpty
+    @NotBlank
+    private String email;
 
     @NotEmpty
     @NotBlank

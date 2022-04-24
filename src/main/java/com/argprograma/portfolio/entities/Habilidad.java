@@ -23,8 +23,8 @@ public class Habilidad {
     @Column(name="porcentaje")
     private Integer porcentaje;
 
-    @Column(name="file_type")
-    private String file_type;
+    @Column(name="extension")
+    private String extension;
 
     @Column(name="orden", unique = true)
     private Integer orden;

@@ -59,13 +59,13 @@ public class HabilidadController {
                                                         @RequestParam("file") MultipartFile file,
                                                         @RequestParam("nombre") String nombre,
                                                         @RequestParam("porcentaje") Integer porcentaje,
-                                                        @RequestParam("file_type") String file_type,
+                                                        @RequestParam("extension") String extension,
                                                         @RequestParam("orden") Integer orden) {
 
         HabilidadDTO habilidadDTO = new HabilidadDTO();
         habilidadDTO.setNombre(nombre);
         habilidadDTO.setPorcentaje(porcentaje);
-        habilidadDTO.setFile_type(file_type);
+        habilidadDTO.setExtension(extension);
         habilidadDTO.setOrden(orden);
 
         return new ResponseEntity<>(habilidadService.createHabilidad(personaId, habilidadDTO, file), HttpStatus.CREATED);
@@ -78,13 +78,13 @@ public class HabilidadController {
                                                         @RequestParam("file") MultipartFile file,
                                                         @RequestParam("nombre") String nombre,
                                                         @RequestParam("porcentaje") Integer porcentaje,
-                                                        @RequestParam("file_type") String file_type,
+                                                        @RequestParam("extension") String extension,
                                                         @RequestParam("orden") Integer orden) {
 
         HabilidadDTO habilidadDTO = new HabilidadDTO();
         habilidadDTO.setNombre(nombre);
         habilidadDTO.setPorcentaje(porcentaje);
-        habilidadDTO.setFile_type(file_type);
+        habilidadDTO.setExtension(extension);
         habilidadDTO.setOrden(orden);
 
         return new ResponseEntity<>(habilidadService.updateHabilidad(personaId, habilidadId, habilidadDTO, file), HttpStatus.OK);
