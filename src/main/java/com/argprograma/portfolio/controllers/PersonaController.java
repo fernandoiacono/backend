@@ -52,8 +52,8 @@ public class PersonaController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("{personaId}/uploadProfileImage")
-    public ResponseEntity<PersonaDTO> uploadProfileImage(@PathVariable(name="personaId") Long personaId, @RequestParam("file") MultipartFile file) {
-        return new ResponseEntity<>(personaService.uploadProfileImage(personaId, file), HttpStatus.OK);
+    public ResponseEntity<PersonaDTO> uploadProfileImage(@PathVariable(name="personaId") Long personaId, @RequestParam("file") MultipartFile file, @RequestParam("file_type") String file_type) {
+        return new ResponseEntity<>(personaService.uploadProfileImage(personaId, file, file_type), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

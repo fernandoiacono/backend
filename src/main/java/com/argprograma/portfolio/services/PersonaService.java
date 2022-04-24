@@ -82,10 +82,10 @@ public class PersonaService implements IPersonaService{
     }
 
     @Override
-    public PersonaDTO uploadProfileImage(Long personaId, MultipartFile file) {
+    public PersonaDTO uploadProfileImage(Long personaId, MultipartFile file, String file_type) {
         Persona persona = personaRepository.findById(personaId).orElseThrow(() -> new ResourceNotFoundException("Persona", "id", personaId));
 
-        persona.setFile_type(FilenameUtils.getExtension(file.getOriginalFilename()));
+        persona.setFile_type(file_type);
         Persona personaToUpdate = new Persona();
 
         try {

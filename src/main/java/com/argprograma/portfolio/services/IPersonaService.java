@@ -13,7 +13,7 @@ public interface IPersonaService {
 
     boolean deletePersona(Long id);
 
-    PersonaDTO uploadProfileImage(Long personaId, MultipartFile file);
+    PersonaDTO uploadProfileImage(Long personaId, MultipartFile file, String file_type);
 
     boolean deleteProfileImage(Long personaId);
 

@@ -31,11 +31,11 @@ public class ProyectoController {
         return new ResponseEntity<>(proyectoService.getAllProyectoByPersonaId(personaId), HttpStatus.OK);
     }
 
-    @GetMapping("/{proyectoId}/dowloadImage/{filename}")
-    public ResponseEntity<?> getImage(@PathVariable(name="personaId") Long personaId, @PathVariable(name="proyectoId") Long proyectoId,@PathVariable("filename") String filename) {
+    @GetMapping("/{proyectoId}/downloadImage/{extension}")
+    public ResponseEntity<?> getImage(@PathVariable(name="personaId") Long personaId, @PathVariable(name="proyectoId") Long proyectoId,@PathVariable("extension") String extension) {
         //byte[] image = new byte[0];
         try {
-            File file = new File(System.getProperty("user.dir")+ "/proyectos-upload-img/" + personaId + "/" + filename);
+            File file = new File(System.getProperty("user.dir")+ "/proyectos-upload-img/" + personaId + "/" + extension);
             byte[] image = FileUtils.readFileToByteArray(file);
             Path path = file.toPath();
             MediaType mediaType = MediaType.parseMediaType(Files.probeContentType(path));
